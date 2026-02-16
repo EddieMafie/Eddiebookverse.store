@@ -15,12 +15,22 @@ background:#0b3d91;
 color:white;
 padding:20px;
 }
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+}
 .book{
 background:white;
 margin:20px;
 padding:20px;
 border-radius:12px;
 box-shadow:0 0 10px rgba(0,0,0,0.1);
+width:300px;
+}
+.book img{
+width:100%;
+border-radius:8px;
 }
 button{
 background:#28a745;
@@ -29,6 +39,10 @@ padding:12px 20px;
 border:none;
 border-radius:8px;
 font-size:16px;
+cursor:pointer;
+}
+button:hover{
+background:#218838;
 }
 footer{
 background:#222;
@@ -46,17 +60,40 @@ margin-top:40px;
 <p>Learn Skills. Build Wealth. Change Your Life.</p>
 </header>
 
+<div class="container">
+
 <div class="book">
+<img src="youth.jpg" alt="Entrepreneurship Book">
 <h2>Entrepreneurship Skills for Youths</h2>
 <p>Author: EddieMafie</p>
 <p>Instant Download PDF eBook</p>
 <p><b>Price: $5</b></p>
-
-<p>After payment, send proof to WhatsApp:</p>
-
 <a href="https://wa.me/256749658181">
 <button>Send Payment Proof</button>
 </a>
+</div>
+
+<div class="book">
+<img src="stocks.jpg" alt="Stock Market Book">
+<h2>Stock Market Basics</h2>
+<p>Author: EddieMafie</p>
+<p>Learn how to invest wisely</p>
+<p><b>Price: $7</b></p>
+<a href="https://wa.me/256749658181">
+<button>Send Payment Proof</button>
+</a>
+</div>
+
+<div class="book">
+<img src="online.jpg" alt="Online Business Book">
+<h2>Online Business Blueprint</h2>
+<p>Author: EddieMafie</p>
+<p>Build income online step-by-step</p>
+<p><b>Price: $6</b></p>
+<a href="https://wa.me/256749658181">
+<button>Send Payment Proof</button>
+</a>
+</div>
 
 </div>
 
