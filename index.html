@@ -1,38 +1,177 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>EddieBookVerse Store</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>EddieBookVerse Store</title>
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f4f6f9;}
-header{background:#0b3d91;color:white;padding:25px;text-align:center;}
-header h1{margin:0;}
-.products{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;padding:30px;}
-.card{background:white;width:280px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.1);padding:20px;text-align:center;transition:0.3s;}
-.card:hover{transform:translateY(-5px);}
-.card img{width:140px;margin-bottom:15px;}
-.price{font-weight:bold;color:#0b3d91;margin:10px 0;}
-button{padding:10px 15px;border:none;border-radius:8px;margin:5px 5px 10px 5px;cursor:pointer;font-size:14px;}
-.cart-btn{background:#28a745;color:white;}
-.paypal{background:#003087;color:white;}
-.mobilemoney{background:#FF9900;color:white;}
-.whatsapp{background:#25D366;color:white;}
-.pdf-btn{background:#0b3d91;color:white;padding:8px 12px;border:none;border-radius:8px;margin:5px;cursor:pointer;transition:all 0.3s ease;}
-.pdf-btn:hover{transform:translateY(-3px) scale(1.05);background:#0f52ba;}
-.pdf-card{background:#e8eaf6;padding:10px;border-radius:10px;text-align:center;opacity:0;transform:scale(0.8);transition:all 0.4s ease;}
-.pdf-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:10px;}
-.confirm-btn{background:#ff9900;color:white;padding:10px 15px;border:none;border-radius:8px;margin-top:10px;cursor:pointer;}
-footer{background:#111;color:white;text-align:center;padding:15px;margin-top:30px;}
-.cart{position:fixed;bottom:20px;right:20px;background:#0b3d91;color:white;padding:12px 18px;border-radius:50px;cursor:pointer;}
-.floating-whatsapp{position:fixed;bottom:90px;right:20px;background:#25D366;color:white;padding:15px 18px;border-radius:50px;font-weight:bold;font-size:14px;text-decoration:none;box-shadow:0 4px 10px rgba(0,0,0,0.2);z-index:1000;}
-.modal-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000;}
-.modal{background:white;padding:20px;border-radius:15px;width:90%;max-width:500px;text-align:center;}
-.modal h3{margin-top:0;}
-.modal button{margin-top:15px;}
+  body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    color:#111;
+  }
+
+  /* Header */
+  header {
+    background:#0b3d91;
+    color:white;
+    padding:20px;
+    text-align:center;
+  }
+  header h1 {
+    margin:0;
+    font-size:28px;
+  }
+  header p {
+    margin:5px 0 0 0;
+    font-size:16px;
+  }
+
+  /* Product Grid */
+  .products-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:20px;
+    padding:20px;
+  }
+
+  .product-card {
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    transition:transform 0.3s ease;
+    position:relative;
+  }
+
+  .product-card:hover {
+    transform:translateY(-5px);
+  }
+
+  .product-card img {
+    width:100%;
+    height:auto;
+    display:block;
+  }
+
+  .product-card h3 {
+    font-size:16px;
+    margin:10px 0 5px;
+  }
+
+  .product-card p {
+    font-size:14px;
+    color:#555;
+    margin:0 10px 8px 10px;
+  }
+
+  .product-card .price {
+    font-weight:bold;
+    margin:8px 0;
+    font-size:15px;
+  }
+
+  .sale-badge {
+    position:absolute;
+    background:#ff9900;
+    color:white;
+    font-weight:bold;
+    padding:4px 8px;
+    top:10px;
+    left:10px;
+    border-radius:5px;
+    font-size:12px;
+  }
+
+  .add-cart-btn {
+    background:#0b3d91;
+    color:white;
+    padding:8px 12px;
+    border:none;
+    border-radius:8px;
+    margin-bottom:10px;
+    cursor:pointer;
+  }
+
+  /* Related Products / You may also like */
+  .related-section {
+    padding:20px;
+  }
+  .related-section h2 {
+    margin-bottom:10px;
+    font-size:18px;
+  }
+
+  /* Contact */
+  .contact {
+    padding:20px;
+    text-align:center;
+    background:#fff;
+    margin-top:20px;
+    border-top:1px solid #ccc;
+  }
+  .contact h2 {
+    margin-bottom:10px;
+    font-size:20px;
+  }
+  .contact p {
+    margin:4px 0;
+    font-size:16px;
+  }
+  .contact .small {
+    font-size:13px;
+    color:#555;
+    margin-top:6px;
+  }
+
+  /* Newsletter */
+  .newsletter {
+    background:#f0f4f8;
+    padding:30px 20px;
+    text-align:center;
+  }
+  .newsletter h2 {
+    margin-bottom:15px;
+    font-size:20px;
+  }
+  .newsletter input {
+    padding:10px;
+    border-radius:50px;
+    border:1px solid #ccc;
+    width:250px;
+    max-width:80%;
+    margin-right:5px;
+  }
+  .newsletter button {
+    padding:10px 20px;
+    border-radius:50px;
+    border:none;
+    background:#0b3d91;
+    color:white;
+    cursor:pointer;
+  }
+
+  /* Footer */
+  footer {
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+  }
+
+  /* Responsive */
+  @media screen and (max-width:768px){
+    .products-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media screen and (max-width:480px){
+    .products-grid { grid-template-columns:1fr; }
+    .newsletter input { width:70%; margin-bottom:10px; }
+  }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -40,144 +179,74 @@ footer{background:#111;color:white;text-align:center;padding:15px;margin-top:30p
   <p>Learn Skills. Build Wealth. Change Your Life.</p>
 </header>
 
-<section class="products">
-
-  <div class="card">
-    <img src="images/entrepreneurship.jpg">
-    <h3>Entrepreneurship Skills for Youths</h3>
-    <p>Instant PDF Download</p>
-    <div class="price">$5</div>
-    <button class="cart-btn" onclick="addToCart('Entrepreneurship Skills for Youths',5,'ebooks/entrepreneurship.pdf')">Add to Cart</button>
+<section class="products-grid">
+  <!-- Product 1 -->
+  <div class="product-card">
+    <div class="sale-badge">Sale</div>
+    <img src="images/african-beauty.jpg" alt="African Beauty">
+    <h3>African Beauty</h3>
+    <p>A Global Educational Exploration</p>
+    <div class="price">$13 <span style="text-decoration:line-through;color:#aaa;">$23</span></div>
+    <button class="add-cart-btn">Add to Cart</button>
   </div>
 
-  <div class="card">
-    <img src="images/stock.jpg">
-    <h3>Stock Market Basics</h3>
-    <p>Learn investing step-by-step</p>
-    <div class="price">$7</div>
-    <button class="cart-btn" onclick="addToCart('Stock Market Basics',7,'ebooks/stockmarket.pdf')">Add to Cart</button>
+  <!-- Product 2 -->
+  <div class="product-card">
+    <div class="sale-badge">Sale</div>
+    <img src="images/entrepreneurship.jpg" alt="Entrepreneurship Skills">
+    <h3>Entrepreneurship Skills</h3>
+    <p>For Youths</p>
+    <div class="price">$5 <span style="text-decoration:line-through;color:#aaa;">$7</span></div>
+    <button class="add-cart-btn">Add to Cart</button>
   </div>
 
-  <div class="card">
-    <img src="images/online.jpg">
-    <h3>Online Business Blueprint</h3>
-    <p>Build income online</p>
-    <div class="price">$6</div>
-    <button class="cart-btn" onclick="addToCart('Online Business Blueprint',6,'ebooks/onlinebusiness.pdf')">Add to Cart</button>
+  <!-- Product 3 -->
+  <div class="product-card">
+    <img src="images/freedom.jpg" alt="Peace and Freedom">
+    <h3>Peace and Freedom</h3>
+    <p>Relaxation & Inner Peace</p>
+    <div class="price">$10</div>
+    <button class="add-cart-btn">Add to Cart</button>
   </div>
 
+  <!-- Product 4 -->
+  <div class="product-card">
+    <img src="images/21day.jpg" alt="21-Day Life Reset">
+    <h3>21-Day Life Reset</h3>
+    <p>Step-by-Step Life Program</p>
+    <div class="price">$12</div>
+    <button class="add-cart-btn">Add to Cart</button>
+  </div>
 </section>
 
-<div class="cart" onclick="openCartModal()">
-🛒 Cart (<span id="cartCount">0</span>)
-</div>
-
-<div class="modal-bg" id="cartModal">
-  <div class="modal">
-    <h3>Your Cart</h3>
-    <div id="cartItems"></div>
-    <p>Total: $<span id="cartTotal">0</span></p>
-    <div id="pdfSection"></div>
-    <button onclick="checkout()">Checkout</button>
-    <button onclick="closeCartModal()">Close</button>
+<section class="related-section">
+  <h2>You may also like</h2>
+  <div class="products-grid">
+    <div class="product-card">
+      <img src="images/freedom.jpg" alt="Peace and Freedom">
+      <h3>Peace and Freedom</h3>
+    </div>
   </div>
-</div>
+</section>
+
+<section class="contact">
+  <h2>Contact info:</h2>
+  <p><strong>Email:</strong> edrinejohns05@gmail.com</p>
+  <p><strong>Phone / WhatsApp:</strong> +256 701079804</p>
+  <p class="small">Get exclusive deals and early access to new products.</p>
+</section>
+
+<section class="newsletter">
+  <h2>Join Our Reading Community</h2>
+  <form>
+    <input type="email" placeholder="Email address" required>
+    <button type="submit">→</button>
+  </form>
+</section>
 
 <footer>
-© 2026 EddieBookVerse. All Rights Reserved.
+  © 2026 EddieBookVerse. All Rights Reserved.
 </footer>
-
-<a href="https://wa.me/256749658181" class="floating-whatsapp" target="_blank">
-💬 WhatsApp Business
-</a>
-
-<script>
-let cart = [];
-let cartTotal = 0;
-
-function addToCart(name, price, pdf){
-  cart.push({name,price,pdf});
-  cartTotal += price;
-  document.getElementById("cartCount").innerText = cart.length;
-  alert(name + " added to cart!");
-}
-
-function openCartModal(){
-  let itemsDiv = document.getElementById("cartItems");
-  let pdfDiv = document.getElementById("pdfSection");
-  pdfDiv.innerHTML = "";
-  if(cart.length===0){
-    itemsDiv.innerHTML="<p>Your cart is empty.</p>";
-  } else {
-    itemsDiv.innerHTML = "<ul>" + cart.map(p=>"<li>"+p.name+" - $"+p.price+"</li>").join("") + "</ul>";
-  }
-  document.getElementById("cartTotal").innerText = cartTotal;
-  document.getElementById("cartModal").style.display="flex";
-}
-
-function closeCartModal(){ 
-  document.getElementById("cartModal").style.display="none"; 
-}
-
-function checkout(){
-  if(cart.length===0){ alert("Your cart is empty."); return; }
-  let total = cartTotal;
-  let payment = prompt("Choose payment method:\n1 = PayPal\n2 = Mobile Money\n3 = WhatsApp Messenger");
-  switch(payment){
-    case "1": paypalCheckout(total); break;
-    case "2": mobileMoneyCheckout(total); break;
-    case "3": whatsappCheckout(total); break;
-    default: alert("Invalid choice"); break;
-  }
-}
-
-/* Pop-in PDF cards with hover animation */
-function showPDFs(){
-  let pdfDiv = document.getElementById("pdfSection");
-  pdfDiv.innerHTML = '<div class="pdf-grid"></div>';
-  let grid = pdfDiv.querySelector('.pdf-grid');
-  cart.forEach((p,index)=>{
-    let div = document.createElement('div');
-    div.className = 'pdf-card';
-    div.innerHTML = `<p>${p.name}</p><a href="${p.pdf}" download class="pdf-btn">📥 Download</a>`;
-    grid.appendChild(div);
-    setTimeout(()=>{
-      div.style.opacity='1';
-      div.style.transform='scale(1)';
-    }, index*200); // stagger pop-in
-  });
-}
-
-function paypalCheckout(total){
-  let items=cart.map(p=>p.name).join(", ");
-  let url="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=eddiebookverse@gmail.com&item_name="+encodeURIComponent(items)+"&amount="+total+"&currency_code=USD";
-  window.open(url,"_blank");
-  addConfirmButton();
-}
-
-function mobileMoneyCheckout(total){
-  let items=cart.map(p=>p.name).join(", ");
-  alert("Mobile Money Payment Instructions:\n\n" +
-        "Pay using Airtel or MTN Uganda Mobile Money to one of the numbers:\n" +
-        "• 256740026620\n" +
-        "• 256749658181\n" +
-        "• 256779315402\n\n" +
-        "Total Amount: $"+total+"\n\n" +
-        "After payment, click 'Confirm Payment' in the cart to get your PDFs.");
-  addConfirmButton();
-}
-
-function whatsappCheckout(total){
-  let items=cart.map(p=>p.name).join(", ");
-  let message="Hello, I want to order: "+items+" | Total: $"+total;
-  window.open("https://wa.me/256740026620?text="+encodeURIComponent(message));
-}
-
-function addConfirmButton(){
-  let pdfDiv = document.getElementById("pdfSection");
-  pdfDiv.innerHTML = `<button class="confirm-btn" onclick="showPDFs()">✅ Confirm Payment & Show PDFs</button>`;
-}
-</script>
 
 </body>
 </html>
