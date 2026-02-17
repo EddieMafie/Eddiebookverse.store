@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eddiebookverse. Ug - Your Universe of Knowledge</title>
+    <meta name="description" content="Eddiebookverse - Your universe of digital knowledge. High-quality eBooks on entrepreneurship, personal development, wellness, and African culture.">
+    <meta name="keywords" content="ebooks, digital books, African culture, entrepreneurship, personal development, wellness">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <title>Eddiebookverse.Ug - Your Universe of Knowledge</title>
     <style>
         * {
             margin: 0;
@@ -11,19 +14,31 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #1e3a5f;
+            --secondary-color: #2c5f8f;
+            --accent-color: #e74c3c;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f5f5f5;
+            --success-color: #27ae60;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-dark);
+            overflow-x: hidden;
         }
 
-        /* Top Announcement Bar */
+        /* Announcement Bar */
         .announcement-bar {
-            background: #1e3a5f;
+            background: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 14px;
+            font-weight: 500;
         }
 
         /* Header */
@@ -34,7 +49,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
         .header-container {
@@ -44,18 +59,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
         }
 
         .logo {
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 20px;
+            font-weight: 700;
             color: white;
             text-decoration: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
         }
 
         nav ul {
             display: flex;
-            gap: 30px;
+            gap: 35px;
             list-style: none;
         }
 
@@ -63,7 +91,9 @@
             color: white;
             text-decoration: none;
             font-size: 15px;
+            font-weight: 500;
             transition: opacity 0.3s;
+            cursor: pointer;
         }
 
         nav a:hover {
@@ -80,9 +110,15 @@
             background: transparent;
             color: white;
             border: 1px solid #444;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 4px;
             font-size: 14px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .currency-selector:hover {
+            border-color: #666;
         }
 
         .icon-btn {
@@ -90,40 +126,69 @@
             border: none;
             color: white;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
+            padding: 5px;
+            transition: transform 0.2s;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
         }
 
         /* Hero Section */
         .hero {
             position: relative;
-            height: 600px;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23234d3f" width="1200" height="600"/><text x="600" y="300" font-family="Arial" font-size="48" fill="white" text-anchor="middle">Modern Living Room</text></svg>');
+            min-height: 600px;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.9) 0%, rgba(44, 95, 143, 0.85) 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23234d3f" width="1200" height="600"/><circle cx="200" cy="150" r="80" fill="%23ffffff" opacity="0.05"/><circle cx="900" cy="400" r="120" fill="%23ffffff" opacity="0.05"/><circle cx="1100" cy="200" r="60" fill="%23ffffff" opacity="0.05"/></svg>');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-align: center;
+            padding: 80px 20px;
         }
 
         .hero-content {
             max-width: 800px;
-            padding: 0 20px;
         }
 
         .hero h1 {
-            font-size: 56px;
+            font-size: clamp(36px, 6vw, 60px);
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
+            font-size: clamp(16px, 3vw, 22px);
             opacity: 0.95;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Section Styles */
@@ -134,17 +199,120 @@
         }
 
         .section-title {
-            font-size: 32px;
+            font-size: clamp(28px, 5vw, 36px);
             font-weight: 700;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 420px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%);
+        }
+
+        .sale-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent-color);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
+        }
+
+        .product-info {
+            padding: 24px;
             text-align: center;
         }
 
-        .section-subtitle {
-            text-align: center;
+        .product-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            line-height: 1.4;
+            min-height: 48px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
             font-size: 18px;
-            color: #666;
-            margin-bottom: 50px;
+            margin-left: 10px;
+            font-weight: 400;
+        }
+
+        .btn-buy {
+            width: 100%;
+            padding: 12px 24px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-buy:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
         }
 
         /* About Section */
@@ -155,145 +323,72 @@
 
         .about-content {
             max-width: 900px;
-            margin: 0 auto;
-            font-size: 24px;
+            margin: 0 auto 40px;
+            font-size: clamp(18px, 3vw, 24px);
             line-height: 1.8;
-            color: #333;
-            margin-bottom: 30px;
+            color: var(--text-dark);
         }
 
         .shop-now-btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 35px;
             background: transparent;
-            color: #333;
+            color: var(--primary-color);
             text-decoration: none;
-            border: 1px solid #333;
-            border-radius: 4px;
+            border: 2px solid var(--primary-color);
+            border-radius: 6px;
             font-size: 16px;
+            font-weight: 600;
             transition: all 0.3s;
         }
 
         .shop-now-btn:hover {
-            background: #333;
+            background: var(--primary-color);
             color: white;
+            transform: translateY(-2px);
         }
 
         /* Split Section */
         .split-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            min-height: 600px;
-            align-items: center;
+            min-height: 550px;
+            align-items: stretch;
         }
 
         .split-image {
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><rect fill="%2327ae60" width="600" height="600"/><text x="300" y="300" font-family="Arial" font-size="32" fill="white" text-anchor="middle">Fashion Image</text></svg>');
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.3), rgba(46, 213, 115, 0.3)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><rect fill="%2327ae60" width="600" height="600"/><path d="M0,300 Q150,200 300,300 T600,300 L600,600 L0,600 Z" fill="%23ffffff" opacity="0.1"/></svg>');
             background-size: cover;
             background-position: center;
-            height: 100%;
         }
 
         .split-content {
-            padding: 60px 80px;
-            background: #f5f5f5;
-            height: 100%;
+            padding: clamp(40px, 8vw, 80px);
+            background: var(--bg-light);
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .split-content h2 {
-            font-size: 36px;
+            font-size: clamp(28px, 5vw, 40px);
             margin-bottom: 20px;
+            color: var(--text-dark);
         }
 
         .split-content p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 30px;
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 35px;
+            line-height: 1.7;
         }
 
-        /* Product Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .sale-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #e74c3c;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .product-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .product-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #2c5f2d;
-        }
-
-        .product-description {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .product-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .original-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 16px;
-            margin-left: 8px;
-        }
-
-        /* Catalog Page Styles */
+        /* Catalog Page */
         .catalog-header {
-            padding: 30px 20px;
+            padding: 40px 20px;
             background: white;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 2px solid #e0e0e0;
         }
 
         .catalog-controls {
@@ -303,164 +398,44 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
+        }
+
+        .catalog-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-dark);
         }
 
         .filter-group {
             display: flex;
             gap: 15px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .filter-btn {
-            padding: 8px 16px;
+            padding: 10px 18px;
             background: white;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 500;
             transition: all 0.3s;
         }
 
         .filter-btn:hover {
-            background: #f5f5f5;
+            background: var(--bg-light);
+            border-color: var(--primary-color);
         }
 
-        .view-options {
-            display: flex;
-            gap: 10px;
-        }
-
-        .view-btn {
-            padding: 8px 12px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
+        .item-count {
+            color: var(--text-light);
             font-size: 14px;
         }
 
-        .view-btn.active {
-            background: #333;
-            color: white;
-            border-color: #333;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .contact-section h2 {
-            font-size: 32px;
-            margin-bottom: 30px;
-        }
-
-        .contact-info {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-item {
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .contact-item strong {
-            font-weight: 600;
-        }
-
-        .contact-item a {
-            color: #1e3a5f;
-            text-decoration: none;
-        }
-
-        .contact-note {
-            margin-top: 20px;
-            color: #666;
-            font-size: 14px;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            background: #f5f5f5;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .newsletter h2 {
-            font-size: 32px;
-            margin-bottom: 30px;
-        }
-
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 14px 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 15px;
-        }
-
-        .newsletter-btn {
-            padding: 14px 30px;
-            background: #1e3a5f;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .newsletter-btn:hover {
-            background: #2c5f8f;
-        }
-
-        /* Footer */
-        footer {
-            background: #000;
-            color: white;
-            padding: 40px 20px 20px;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            transition: opacity 0.3s;
-        }
-
-        .footer-links a:hover {
-            opacity: 0.7;
-        }
-
-        .footer-bottom {
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            font-size: 14px;
-            color: #999;
-        }
-
-        /* Product Page Styles */
+        /* Product Page */
         .product-page {
             max-width: 1200px;
             margin: 60px auto;
@@ -471,36 +446,43 @@
         }
 
         .product-gallery {
-            position: relative;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
         }
 
         .main-image {
             width: 100%;
-            height: 600px;
+            height: 650px;
             background-size: cover;
             background-position: center;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
         }
 
-        .thumbnail-images {
+        .thumbnail-gallery {
             display: flex;
-            gap: 10px;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 5px 0;
         }
 
         .thumbnail {
-            width: 80px;
-            height: 80px;
+            min-width: 100px;
+            height: 100px;
             background-size: cover;
             background-position: center;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 2px solid transparent;
-            transition: border 0.3s;
+            border: 3px solid transparent;
+            transition: all 0.3s;
         }
 
-        .thumbnail:hover {
-            border-color: #1e3a5f;
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
         }
 
         .product-details {
@@ -508,144 +490,233 @@
         }
 
         .product-details h1 {
-            font-size: 32px;
+            font-size: clamp(24px, 4vw, 36px);
             margin-bottom: 20px;
             line-height: 1.3;
+            color: var(--text-dark);
         }
 
         .price-section {
             margin-bottom: 30px;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 8px;
         }
 
         .current-price {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
-            color: #333;
+            color: var(--primary-color);
         }
 
         .original-price-large {
-            font-size: 20px;
+            font-size: 22px;
             text-decoration: line-through;
             color: #999;
-            margin-left: 10px;
+            margin-left: 12px;
+        }
+
+        .savings-badge {
+            display: inline-block;
+            margin-left: 12px;
+            padding: 4px 12px;
+            background: var(--success-color);
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .quantity-selector {
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 20px;
+            margin: 25px 0;
+        }
+
+        .quantity-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
         }
 
         .qty-btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #ddd;
+            width: 45px;
+            height: 45px;
+            border: none;
             background: white;
             cursor: pointer;
-            font-size: 18px;
-            border-radius: 4px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
             transition: background 0.3s;
         }
 
         .qty-btn:hover {
-            background: #f5f5f5;
+            background: var(--bg-light);
         }
 
         .qty-input {
-            width: 60px;
-            height: 40px;
+            width: 70px;
+            height: 45px;
             text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
+            border: none;
+            border-left: 2px solid #ddd;
+            border-right: 2px solid #ddd;
+            font-size: 18px;
+            font-weight: 600;
         }
 
         .add-to-cart-btn {
             width: 100%;
-            padding: 16px;
-            background: #1e3a5f;
+            padding: 18px;
+            background: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .add-to-cart-btn:hover {
-            background: #2c5f8f;
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 58, 95, 0.3);
         }
 
         .buy-now-btn {
             width: 100%;
-            padding: 16px;
-            background: #2c5f8f;
+            padding: 18px;
+            background: var(--accent-color);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
 
         .buy-now-btn:hover {
-            background: #1e3a5f;
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
         }
 
         .product-description-full {
-            margin-top: 30px;
+            margin-top: 40px;
+            padding: 25px;
+            background: var(--bg-light);
+            border-radius: 8px;
             line-height: 1.8;
-            color: #666;
+            color: var(--text-dark);
+        }
+
+        .product-features {
+            margin-top: 30px;
+        }
+
+        .product-features h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .product-features ul {
+            padding-left: 20px;
+            line-height: 2;
+        }
+
+        .product-features li {
+            color: var(--text-light);
+            margin-bottom: 8px;
         }
 
         /* Checkout Page */
         .checkout-page {
-            max-width: 800px;
-            margin: 40px auto;
+            max-width: 900px;
+            margin: 60px auto;
             padding: 0 20px;
         }
 
         .checkout-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+        }
+
+        .checkout-header h1 {
+            font-size: 32px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .secure-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--success-color);
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .order-summary {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 12px;
             margin-bottom: 30px;
+            border: 2px solid #e0e0e0;
         }
 
         .order-summary h3 {
-            font-size: 18px;
-            margin-bottom: 15px;
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
         }
 
-        .order-total {
+        .order-item {
             display: flex;
             justify-content: space-between;
-            font-size: 24px;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            padding-top: 20px;
+            margin-top: 10px;
+            border-top: 2px solid var(--text-dark);
+            font-size: 22px;
             font-weight: 700;
-            padding-top: 15px;
-            border-top: 2px solid #ddd;
         }
 
         .checkout-section {
             background: white;
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 35px;
+            border-radius: 12px;
+            margin-bottom: 25px;
             border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .checkout-section h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: var(--text-dark);
         }
 
         .form-group {
@@ -655,118 +726,250 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 14px;
+            color: var(--text-dark);
         }
 
         .form-input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 14px 16px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
             font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 20px;
         }
 
         .payment-option {
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 10px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
             cursor: pointer;
             transition: all 0.3s;
         }
 
         .payment-option:hover {
-            background: #f5f5f5;
+            border-color: var(--primary-color);
+            background: #f8f9fa;
         }
 
         .payment-option.selected {
-            border-color: #1e3a5f;
-            background: #f0f5ff;
+            border-color: var(--primary-color);
+            background: #e8f4f8;
         }
 
         .complete-order-btn {
             width: 100%;
-            padding: 18px;
-            background: #0066ff;
+            padding: 20px;
+            background: var(--success-color);
             color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
 
         .complete-order-btn:hover {
-            background: #0052cc;
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-wrap: wrap;
-            }
-
-            nav ul {
-                gap: 15px;
-                font-size: 14px;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .split-section {
-                grid-template-columns: 1fr;
-            }
-
-            .split-content {
-                padding: 40px 20px;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-
-            .product-image {
-                height: 250px;
-            }
-
-            .about-content {
-                font-size: 18px;
-            }
-
-            .product-page {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .main-image {
-                height: 400px;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            text-align: center;
+            padding: 80px 20px;
         }
 
-        /* Page Containers */
+        .contact-section h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: var(--text-dark);
+        }
+
+        .contact-info {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .contact-item strong {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .contact-note {
+            margin-top: 30px;
+            color: var(--text-light);
+            font-size: 15px;
+            font-style: italic;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .newsletter p {
+            font-size: 18px;
+            margin-bottom: 35px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .newsletter-form {
+            max-width: 550px;
+            margin: 0 auto;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 16px 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            font-size: 15px;
+            background: rgba(255,255,255,0.95);
+            transition: all 0.3s;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            background: white;
+            border-color: white;
+        }
+
+        .newsletter-btn {
+            padding: 16px 35px;
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            padding: 50px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .footer-section p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Page System */
         .page {
             display: none;
         }
@@ -777,33 +980,216 @@
 
         /* Related Products */
         .related-products {
-            margin-top: 60px;
-            padding-top: 60px;
-            border-top: 1px solid #e0e0e0;
+            margin-top: 80px;
+            padding: 60px 20px;
+            background: var(--bg-light);
+            border-radius: 12px;
         }
 
         .related-products h2 {
-            font-size: 28px;
-            margin-bottom: 30px;
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--success-color);
+            color: white;
+            padding: 18px 25px;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 12px;
+            z-index: 2000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .toast.show {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            nav ul {
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .split-section {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .split-image {
+                min-height: 400px;
+            }
+
+            .product-page {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .product-gallery {
+                position: relative;
+                top: 0;
+            }
+
+            .main-image {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 20px;
+            }
+
+            .product-image {
+                height: 280px;
+            }
+
+            .product-info {
+                padding: 16px;
+            }
+
+            .product-title {
+                font-size: 15px;
+                min-height: 40px;
+            }
+
+            .hero {
+                padding: 60px 20px;
+                min-height: 500px;
+            }
+
+            .section {
+                padding: 50px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                width: 100%;
+                min-width: 100%;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                display: none;
+            }
+
+            nav.mobile-active {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .catalog-controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <span id="toast-message"></span>
+    </div>
+
     <!-- Announcement Bar -->
     <div class="announcement-bar">
-        Shop our latest arrivals
+        🎉 Shop our latest arrivals - Limited time offers!
     </div>
 
     <!-- Header -->
     <header>
         <div class="header-container">
-            <a href="#" class="logo" onclick="showPage('home')">Eddiebookverse. Ug</a>
+            <a class="logo" onclick="showPage('home')">📚 Eddiebookverse.Ug</a>
             
-            <nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            
+            <nav id="mainNav">
                 <ul>
-                    <li><a href="#" onclick="showPage('home')">Home</a></li>
-                    <li><a href="#" onclick="showPage('catalog')">Catalog</a></li>
-                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    <li><a onclick="showPage('home')">Home</a></li>
+                    <li><a onclick="showPage('catalog')">Catalog</a></li>
+                    <li><a onclick="showPage('contact')">Contact</a></li>
                 </ul>
             </nav>
 
@@ -812,16 +1198,15 @@
                     <option>USD $</option>
                     <option>UGX</option>
                 </select>
-                <button class="icon-btn">🔍</button>
-                <button class="icon-btn">👤</button>
-                <button class="icon-btn">🛒</button>
+                <button class="icon-btn" title="Search">🔍</button>
+                <button class="icon-btn" title="Account">👤</button>
+                <button class="icon-btn" title="Cart">🛒</button>
             </div>
         </div>
     </header>
 
     <!-- HOME PAGE -->
     <div id="home" class="page active">
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
                 <h1>Discover Your Next Adventure</h1>
@@ -829,13 +1214,11 @@
             </div>
         </section>
 
-        <!-- Featured Products -->
         <section class="section">
             <h2 class="section-title">Featured products</h2>
             <div class="products-grid">
-                <!-- Product 1: African Beauty -->
-                <div class="product-card" onclick="showPage('product')">
-                    <div class="product-image" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g1&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%23d4773a&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%23704214&quot;/></linearGradient></defs><rect fill=&quot;url(%23g1)&quot; width=&quot;400&quot; height=&quot;600&quot;/><text x=&quot;200&quot; y=&quot;250&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;48&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>African</text><text x=&quot;200&quot; y=&quot;310&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;52&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>Beauty</text><text x=&quot;200&quot; y=&quot;380&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>A Global Educational</text><text x=&quot;200&quot; y=&quot;405&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>Exploration</text><text x=&quot;200&quot; y=&quot;510&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>Culture • History • Identity</text></svg>'); background-size: cover;">
+                <div class="product-card" onclick="showProduct(0)">
+                    <div class="product-image" style="background-image: url('african-beauty.jpg');">
                         <span class="sale-badge">Sale</span>
                     </div>
                     <div class="product-info">
@@ -843,12 +1226,12 @@
                         <div class="product-price">
                             $13 <span class="original-price">$23</span>
                         </div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('African Beauty', 13)">Add to Cart</button>
                     </div>
                 </div>
 
-                <!-- Product 2: Entrepreneurship Skills -->
-                <div class="product-card" onclick="showPage('product')">
-                    <div class="product-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g2&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%234a90e2&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%23003d82&quot;/></linearGradient></defs><rect fill=&quot;url(%23g2)&quot; width=&quot;400&quot; height=&quot;600&quot;/><text x=&quot;200&quot; y=&quot;120&quot; font-family=&quot;Arial&quot; font-size=&quot;32&quot; font-weight=&quot;bold&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>ENTREPRENEURSHIP</text><text x=&quot;200&quot; y=&quot;280&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;56&quot; font-weight=&quot;bold&quot; font-style=&quot;italic&quot; fill=&quot;%2300d4ff&quot; text-anchor=&quot;middle&quot;>Skills</text><text x=&quot;200&quot; y=&quot;320&quot; font-family=&quot;Arial&quot; font-size=&quot;20&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>for</text><text x=&quot;200&quot; y=&quot;360&quot; font-family=&quot;Arial&quot; font-size=&quot;36&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>Youths</text><circle cx=&quot;200&quot; cy=&quot;450&quot; r=&quot;40&quot; fill=&quot;%23ff9500&quot; opacity=&quot;0.8&quot;/><text x=&quot;200&quot; y=&quot;460&quot; font-family=&quot;Arial&quot; font-size=&quot;32&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>💡</text><text x=&quot;200&quot; y=&quot;550&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>By EddieMafie</text></svg>'); background-size: cover;">
+                <div class="product-card" onclick="showProduct(1)">
+                    <div class="product-image" style="background-image: url('entrepreneurship.jpg');">
                         <span class="sale-badge">Sale</span>
                     </div>
                     <div class="product-info">
@@ -856,75 +1239,70 @@
                         <div class="product-price">
                             $5 <span class="original-price">$7</span>
                         </div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('Entrepreneurship Skills', 5)">Add to Cart</button>
                     </div>
                 </div>
 
-                <!-- Product 3: Peace and Freedom -->
-                <div class="product-card" onclick="showPage('product')">
-                    <div class="product-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g3&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%23ffa07a&quot;/><stop offset=&quot;50%&quot; style=&quot;stop-color:%23e6b8a2&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%2387ceeb&quot;/></linearGradient></defs><rect fill=&quot;url(%23g3)&quot; width=&quot;400&quot; height=&quot;600&quot;/><ellipse cx=&quot;200&quot; cy=&quot;420&quot; rx=&quot;180&quot; ry=&quot;20&quot; fill=&quot;%235faddd&quot; opacity=&quot;0.6&quot;/><text x=&quot;200&quot; y=&quot;100&quot; font-family=&quot;Brush Script MT, cursive&quot; font-size=&quot;36&quot; fill=&quot;%23556b2f&quot; text-anchor=&quot;middle&quot;>and</text><text x=&quot;200&quot; y=&quot;160&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;52&quot; font-weight=&quot;bold&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>FREEDOM</text><text x=&quot;200&quot; y=&quot;230&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23556b2f&quot; text-anchor=&quot;middle&quot;>A Simple Guide for Relaxation</text><text x=&quot;200&quot; y=&quot;255&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23556b2f&quot; text-anchor=&quot;middle&quot;>and Inner Peace</text><circle cx=&quot;200&quot; cy=&quot;380&quot; r=&quot;25&quot; fill=&quot;%23333&quot;/><path d=&quot;M 200 360 L 200 450 M 180 400 L 200 420 L 220 400&quot; stroke=&quot;%23333&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot;/></svg>'); background-size: cover;">
-                    </div>
+                <div class="product-card" onclick="showProduct(2)">
+                    <div class="product-image" style="background-image: url('peace-freedom.jpg');"></div>
                     <div class="product-info">
                         <h3 class="product-title">Peace and freedom</h3>
                         <div class="product-price">$10</div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('Peace and Freedom', 10)">Add to Cart</button>
                     </div>
                 </div>
 
-                <!-- Product 4: 21-Day Life Reset -->
-                <div class="product-card" onclick="showPage('product')">
-                    <div class="product-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g4&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%230a1128&quot;/><stop offset=&quot;50%&quot; style=&quot;stop-color:%231f3a5f&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%23d4773a&quot;/></linearGradient></defs><rect fill=&quot;url(%23g4)&quot; width=&quot;400&quot; height=&quot;600&quot;/><circle cx=&quot;140&quot; cy=&quot;80&quot; r=&quot;60&quot; fill=&quot;%23fff&quot; opacity=&quot;0.9&quot;/><text x=&quot;140&quot; y=&quot;78&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%231f3a5f&quot; text-anchor=&quot;middle&quot;>A Practical</text><text x=&quot;140&quot; y=&quot;95&quot; font-family=&quot;Arial&quot; font-size=&quot;12&quot; fill=&quot;%231f3a5f&quot; text-anchor=&quot;middle&quot;>Step-by-Step</text><text x=&quot;140&quot; y=&quot;108&quot; font-family=&quot;Arial&quot; font-size=&quot;12&quot; fill=&quot;%231f3a5f&quot; text-anchor=&quot;middle&quot;>Program</text><text x=&quot;200&quot; y=&quot;220&quot; font-family=&quot;Arial Black&quot; font-size=&quot;72&quot; font-weight=&quot;bold&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>21-DAY</text><text x=&quot;200&quot; y=&quot;280&quot; font-family=&quot;Arial Black&quot; font-size=&quot;56&quot; font-weight=&quot;bold&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>LIFE</text><text x=&quot;200&quot; y=&quot;340&quot; font-family=&quot;Arial Black&quot; font-size=&quot;56&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffa500&quot; text-anchor=&quot;middle&quot;>RESET</text><text x=&quot;200&quot; y=&quot;390&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>Stop Feeling Lost • Build Discipline</text><text x=&quot;200&quot; y=&quot;410&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>Take Back Control of Your Life</text><ellipse cx=&quot;200&quot; cy=&quot;520&quot; rx=&quot;35&quot; ry=&quot;60&quot; fill=&quot;%23333&quot; opacity=&quot;0.8&quot;/><circle cx=&quot;200&quot; cy=&quot;480&quot; r=&quot;12&quot; fill=&quot;%23fff&quot;/><text x=&quot;200&quot; y=&quot;560&quot; font-family=&quot;Arial&quot; font-size=&quot;12&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>By EddieMafie</text><text x=&quot;200&quot; y=&quot;575&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;%23ccc&quot; text-anchor=&quot;middle&quot;>EddieBookVerse</text></svg>'); background-size: cover;">
-                    </div>
+                <div class="product-card" onclick="showProduct(3)">
+                    <div class="product-image" style="background-image: url('21-day-reset.jpg');"></div>
                     <div class="product-info">
                         <h3 class="product-title">The 21-Day life reset</h3>
                         <div class="product-price">$12</div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('21-Day Life Reset', 12)">Add to Cart</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
         <section class="section about-section">
             <p class="about-content">
                 We are dedicated to fostering a love for reading and learning by providing an extensive collection of books tailored for every age and interest. Our mission is to create a welcoming environment that encourages exploration and discovery.
             </p>
-            <a href="#" class="shop-now-btn" onclick="showPage('catalog')">Shop now →</a>
+            <a href="#" class="shop-now-btn" onclick="showPage('catalog'); return false;">Shop now →</a>
         </section>
 
-        <!-- Split Section -->
         <section class="split-section">
             <div class="split-image"></div>
             <div class="split-content">
                 <h2>Curated Selections</h2>
-                <p>Handpicked titles for every reader.</p>
-                <a href="#" class="shop-now-btn" onclick="showPage('catalog')">Shop now</a>
+                <p>Handpicked titles for every reader. Discover books that inspire, educate, and entertain.</p>
+                <a href="#" class="shop-now-btn" onclick="showPage('catalog'); return false;">Shop now</a>
             </div>
         </section>
 
-        <!-- Another Split Section -->
         <section class="split-section">
             <div class="split-content">
                 <h2>Endless Reading Possibilities</h2>
-                <p>Explore a vast selection of genres and authors, all curated for your enjoyment.</p>
-                <a href="#" class="shop-now-btn" onclick="showPage('catalog')">Shop now</a>
+                <p>Explore a vast selection of genres and authors, all curated for your enjoyment. From personal development to cultural exploration.</p>
+                <a href="#" class="shop-now-btn" onclick="showPage('catalog'); return false;">Shop now</a>
             </div>
-            <div class="split-image" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 600 600%22><rect fill=%22%231e3a5f%22 width=%22600%22 height=%22600%22/><text x=%22300%22 y=%22300%22 font-family=%22Arial%22 font-size=%2232%22 fill=%22white%22 text-anchor=%22middle%22>Books &amp; Comics</text></svg>'); background-size: cover;"></div>
+            <div class="split-image"></div>
         </section>
 
-        <!-- Contact Section -->
         <section class="contact-section">
             <h2>Contact info:</h2>
             <div class="contact-info">
                 <p class="contact-item"><strong>Email:</strong> <a href="mailto:edrinejohns05@gmail.com">edrinejohns05@gmail.com</a></p>
-                <p class="contact-item"><strong>Phone / WhatsApp:</strong> +256 701079804</p>
+                <p class="contact-item"><strong>Phone / WhatsApp:</strong> <a href="tel:+256701079804">+256 701079804</a></p>
                 <p class="contact-note">Get exclusive deals and early access to new products.</p>
             </div>
         </section>
 
-        <!-- Newsletter -->
         <section class="newsletter">
             <h2>Join Our Reading Community</h2>
-            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
-                <input type="email" class="newsletter-input" placeholder="Email address" required>
-                <button type="submit" class="newsletter-btn">→</button>
+            <p>Subscribe to our newsletter for new releases, exclusive offers, and reading recommendations.</p>
+            <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
             </form>
         </section>
     </div>
@@ -933,82 +1311,75 @@
     <div id="catalog" class="page">
         <div class="catalog-header">
             <div class="catalog-controls">
-                <h1 style="font-size: 32px; font-weight: 700;">Products</h1>
+                <h1 class="catalog-title">Products</h1>
                 <div class="filter-group">
-                    <button class="filter-btn">Availability ⌄</button>
-                    <button class="filter-btn">Price ⌄</button>
-                    <span style="color: #666;">4 items</span>
-                    <button class="filter-btn">Sort ⌄</button>
-                </div>
-                <div class="view-options">
-                    <button class="view-btn active">▦</button>
-                    <button class="view-btn">≡</button>
+                    <button class="filter-btn">Availability ▼</button>
+                    <button class="filter-btn">Price ▼</button>
+                    <span class="item-count">4 items</span>
+                    <button class="filter-btn">Sort ▼</button>
                 </div>
             </div>
         </div>
 
         <section class="section">
             <div class="products-grid">
-                <!-- Same 4 products as homepage -->
-                <div class="product-card" onclick="showPage('product')">
-                    <div class="product-image" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g1&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%23d4773a&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%23704214&quot;/></linearGradient></defs><rect fill=&quot;url(%23g1)&quot; width=&quot;400&quot; height=&quot;600&quot;/><text x=&quot;200&quot; y=&quot;250&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;48&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>African</text><text x=&quot;200&quot; y=&quot;310&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;52&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>Beauty</text><text x=&quot;200&quot; y=&quot;380&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>A Global Educational</text><text x=&quot;200&quot; y=&quot;405&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>Exploration</text><text x=&quot;200&quot; y=&quot;510&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>Culture • History • Identity</text></svg>'); background-size: cover;">
+                <div class="product-card" onclick="showProduct(0)">
+                    <div class="product-image" style="background-image: url('african-beauty.jpg');">
                         <span class="sale-badge">Sale</span>
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">African beauty a global educational exploration</h3>
-                        <div class="product-price">
-                            $13 <span class="original-price">$23</span>
-                        </div>
+                        <div class="product-price">$13 <span class="original-price">$23</span></div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('African Beauty', 13)">Add to Cart</button>
                     </div>
                 </div>
 
-                <div class="product-card" onclick="showPage('product')">
-                    <div class="product-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g2&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%234a90e2&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%23003d82&quot;/></linearGradient></defs><rect fill=&quot;url(%23g2)&quot; width=&quot;400&quot; height=&quot;600&quot;/><text x=&quot;200&quot; y=&quot;120&quot; font-family=&quot;Arial&quot; font-size=&quot;32&quot; font-weight=&quot;bold&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>ENTREPRENEURSHIP</text><text x=&quot;200&quot; y=&quot;280&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;56&quot; font-weight=&quot;bold&quot; font-style=&quot;italic&quot; fill=&quot;%2300d4ff&quot; text-anchor=&quot;middle&quot;>Skills</text><text x=&quot;200&quot; y=&quot;320&quot; font-family=&quot;Arial&quot; font-size=&quot;20&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>for</text><text x=&quot;200&quot; y=&quot;360&quot; font-family=&quot;Arial&quot; font-size=&quot;36&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>Youths</text><circle cx=&quot;200&quot; cy=&quot;450&quot; r=&quot;40&quot; fill=&quot;%23ff9500&quot; opacity=&quot;0.8&quot;/><text x=&quot;200&quot; y=&quot;460&quot; font-family=&quot;Arial&quot; font-size=&quot;32&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>💡</text><text x=&quot;200&quot; y=&quot;550&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>By EddieMafie</text></svg>'); background-size: cover;">
+                <div class="product-card" onclick="showProduct(1)">
+                    <div class="product-image" style="background-image: url('entrepreneurship.jpg');">
                         <span class="sale-badge">Sale</span>
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Entrepreneurship skills for youths</h3>
-                        <div class="product-price">
-                            $5 <span class="original-price">$7</span>
-                        </div>
+                        <div class="product-price">$5 <span class="original-price">$7</span></div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('Entrepreneurship Skills', 5)">Add to Cart</button>
                     </div>
                 </div>
 
-                <div class="product-card" onclick="showPage('product')">
-                    <div class="product-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g3&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%23ffa07a&quot;/><stop offset=&quot;50%&quot; style=&quot;stop-color:%23e6b8a2&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%2387ceeb&quot;/></linearGradient></defs><rect fill=&quot;url(%23g3)&quot; width=&quot;400&quot; height=&quot;600&quot;/><ellipse cx=&quot;200&quot; cy=&quot;420&quot; rx=&quot;180&quot; ry=&quot;20&quot; fill=&quot;%235faddd&quot; opacity=&quot;0.6&quot;/><text x=&quot;200&quot; y=&quot;100&quot; font-family=&quot;Brush Script MT, cursive&quot; font-size=&quot;36&quot; fill=&quot;%23556b2f&quot; text-anchor=&quot;middle&quot;>and</text><text x=&quot;200&quot; y=&quot;160&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;52&quot; font-weight=&quot;bold&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>FREEDOM</text><text x=&quot;200&quot; y=&quot;230&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23556b2f&quot; text-anchor=&quot;middle&quot;>A Simple Guide for Relaxation</text><text x=&quot;200&quot; y=&quot;255&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23556b2f&quot; text-anchor=&quot;middle&quot;>and Inner Peace</text><circle cx=&quot;200&quot; cy=&quot;380&quot; r=&quot;25&quot; fill=&quot;%23333&quot;/><path d=&quot;M 200 360 L 200 450 M 180 400 L 200 420 L 220 400&quot; stroke=&quot;%23333&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot;/></svg>'); background-size: cover;">
-                    </div>
+                <div class="product-card" onclick="showProduct(2)">
+                    <div class="product-image" style="background-image: url('peace-freedom.jpg');"></div>
                     <div class="product-info">
                         <h3 class="product-title">Peace and freedom</h3>
                         <div class="product-price">$10</div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('Peace and Freedom', 10)">Add to Cart</button>
                     </div>
                 </div>
 
-                <div class="product-card" onclick="showPage('product')">
-                    <div class="product-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g4&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%230a1128&quot;/><stop offset=&quot;50%&quot; style=&quot;stop-color:%231f3a5f&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%23d4773a&quot;/></linearGradient></defs><rect fill=&quot;url(%23g4)&quot; width=&quot;400&quot; height=&quot;600&quot;/><circle cx=&quot;140&quot; cy=&quot;80&quot; r=&quot;60&quot; fill=&quot;%23fff&quot; opacity=&quot;0.9&quot;/><text x=&quot;140&quot; y=&quot;78&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%231f3a5f&quot; text-anchor=&quot;middle&quot;>A Practical</text><text x=&quot;140&quot; y=&quot;95&quot; font-family=&quot;Arial&quot; font-size=&quot;12&quot; fill=&quot;%231f3a5f&quot; text-anchor=&quot;middle&quot;>Step-by-Step</text><text x=&quot;140&quot; y=&quot;108&quot; font-family=&quot;Arial&quot; font-size=&quot;12&quot; fill=&quot;%231f3a5f&quot; text-anchor=&quot;middle&quot;>Program</text><text x=&quot;200&quot; y=&quot;220&quot; font-family=&quot;Arial Black&quot; font-size=&quot;72&quot; font-weight=&quot;bold&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>21-DAY</text><text x=&quot;200&quot; y=&quot;280&quot; font-family=&quot;Arial Black&quot; font-size=&quot;56&quot; font-weight=&quot;bold&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>LIFE</text><text x=&quot;200&quot; y=&quot;340&quot; font-family=&quot;Arial Black&quot; font-size=&quot;56&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffa500&quot; text-anchor=&quot;middle&quot;>RESET</text><text x=&quot;200&quot; y=&quot;390&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>Stop Feeling Lost • Build Discipline</text><text x=&quot;200&quot; y=&quot;410&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>Take Back Control of Your Life</text><ellipse cx=&quot;200&quot; cy=&quot;520&quot; rx=&quot;35&quot; ry=&quot;60&quot; fill=&quot;%23333&quot; opacity=&quot;0.8&quot;/><circle cx=&quot;200&quot; cy=&quot;480&quot; r=&quot;12&quot; fill=&quot;%23fff&quot;/><text x=&quot;200&quot; y=&quot;560&quot; font-family=&quot;Arial&quot; font-size=&quot;12&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>By EddieMafie</text><text x=&quot;200&quot; y=&quot;575&quot; font-family=&quot;Arial&quot; font-size=&quot;11&quot; fill=&quot;%23ccc&quot; text-anchor=&quot;middle&quot;>EddieBookVerse</text></svg>'); background-size: cover;">
-                    </div>
+                <div class="product-card" onclick="showProduct(3)">
+                    <div class="product-image" style="background-image: url('21-day-reset.jpg');"></div>
                     <div class="product-info">
                         <h3 class="product-title">The 21-Day life reset</h3>
                         <div class="product-price">$12</div>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('21-Day Life Reset', 12)">Add to Cart</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact and Newsletter sections -->
         <section class="contact-section">
             <h2>Contact info:</h2>
             <div class="contact-info">
                 <p class="contact-item"><strong>Email:</strong> <a href="mailto:edrinejohns05@gmail.com">edrinejohns05@gmail.com</a></p>
-                <p class="contact-item"><strong>Phone / WhatsApp:</strong> +256 701079804</p>
+                <p class="contact-item"><strong>Phone / WhatsApp:</strong> <a href="tel:+256701079804">+256 701079804</a></p>
                 <p class="contact-note">Get exclusive deals and early access to new products.</p>
             </div>
         </section>
 
         <section class="newsletter">
             <h2>Join Our Reading Community</h2>
-            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
-                <input type="email" class="newsletter-input" placeholder="Email address" required>
-                <button type="submit" class="newsletter-btn">→</button>
+            <p>Subscribe to our newsletter for new releases and exclusive offers.</p>
+            <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
             </form>
         </section>
     </div>
@@ -1017,28 +1388,33 @@
     <div id="product" class="page">
         <div class="product-page">
             <div class="product-gallery">
-                <div class="main-image" id="mainProductImage" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g1&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%23d4773a&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%23704214&quot;/></linearGradient></defs><rect fill=&quot;url(%23g1)&quot; width=&quot;400&quot; height=&quot;600&quot;/><text x=&quot;200&quot; y=&quot;250&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;48&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>African</text><text x=&quot;200&quot; y=&quot;310&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;52&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>Beauty</text><text x=&quot;200&quot; y=&quot;380&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>A Global Educational</text><text x=&quot;200&quot; y=&quot;405&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>Exploration</text><text x=&quot;200&quot; y=&quot;510&quot; font-family=&quot;Arial&quot; font-size=&quot;14&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>Culture • History • Identity</text></svg>'); background-size: cover;"></div>
-                <div class="thumbnail-images">
-                    <div class="thumbnail" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g1&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%23d4773a&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%23704214&quot;/></linearGradient></defs><rect fill=&quot;url(%23g1)&quot; width=&quot;400&quot; height=&quot;600&quot;/><text x=&quot;200&quot; y=&quot;250&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;48&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>African</text><text x=&quot;200&quot; y=&quot;310&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;52&quot; font-weight=&quot;bold&quot; fill=&quot;%23ffd700&quot; text-anchor=&quot;middle&quot;>Beauty</text></svg>'); background-size: cover;"></div>
+                <div id="productMainImage" class="main-image" style="background-image: url('african-beauty.jpg');"></div>
+                <div class="thumbnail-gallery">
+                    <div class="thumbnail active" style="background-image: url('african-beauty.jpg');" onclick="changeProductImage('african-beauty.jpg', this)"></div>
                 </div>
             </div>
 
             <div class="product-details">
-                <h1>African beauty a global educational exploration</h1>
+                <h1 id="productTitle">African beauty a global educational exploration</h1>
                 
                 <div class="price-section">
-                    <span class="current-price">$13.00</span>
-                    <span class="original-price-large">$23.00</span>
+                    <span class="current-price" id="productPrice">$13.00</span>
+                    <span class="original-price-large" id="productOriginalPrice">$23.00</span>
+                    <span class="savings-badge">Save $10</span>
                 </div>
 
                 <div class="quantity-selector">
-                    <button class="qty-btn" onclick="changeQuantity(-1)">−</button>
-                    <input type="number" class="qty-input" id="quantity" value="1" min="1">
-                    <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                    <span class="quantity-label">Quantity:</span>
+                    <div class="qty-controls">
+                        <button class="qty-btn" onclick="changeQuantity(-1)">−</button>
+                        <input type="number" class="qty-input" id="quantity" value="1" min="1" readonly>
+                        <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
                 </div>
 
-                <button class="add-to-cart-btn" onclick="alert('Added to cart!')">
-                    🛒 Add to cart
+                <button class="add-to-cart-btn" onclick="addToCart('African Beauty', 13)">
+                    <span>🛒</span>
+                    <span>Add to cart</span>
                 </button>
 
                 <button class="buy-now-btn" onclick="showPage('checkout')">
@@ -1046,41 +1422,52 @@
                 </button>
 
                 <div class="product-description-full">
-                    <p>African beauty a global education exploration is a book written specifically to advocate for the beauty of Africa and expose the world to the African Global influence in this today modern world and also expose the world to the cultural norms and specific diversity in Africa</p>
+                    <h3 style="margin-bottom: 15px; font-size: 20px;">About This Book</h3>
+                    <p>African beauty a global education exploration is a book written specifically to advocate for the beauty of Africa and expose the world to the African Global influence in this today modern world and also expose the world to the cultural norms and specific diversity in Africa.</p>
+                </div>
+
+                <div class="product-features">
+                    <h3>What You'll Get:</h3>
+                    <ul>
+                        <li>✓ Instant digital download</li>
+                        <li>✓ Available in PDF and EPUB formats</li>
+                        <li>✓ Read on any device</li>
+                        <li>✓ Lifetime access</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Related Products / You May Also Like -->
-        <div class="related-products section">
-            <h2>You may also like</h2>
-            <div class="products-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
-                <div class="product-card" onclick="showPage('product')">
-                    <div class="product-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g3&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%23ffa07a&quot;/><stop offset=&quot;50%&quot; style=&quot;stop-color:%23e6b8a2&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%2387ceeb&quot;/></linearGradient></defs><rect fill=&quot;url(%23g3)&quot; width=&quot;400&quot; height=&quot;600&quot;/><ellipse cx=&quot;200&quot; cy=&quot;420&quot; rx=&quot;180&quot; ry=&quot;20&quot; fill=&quot;%235faddd&quot; opacity=&quot;0.6&quot;/><text x=&quot;200&quot; y=&quot;100&quot; font-family=&quot;Brush Script MT, cursive&quot; font-size=&quot;36&quot; fill=&quot;%23556b2f&quot; text-anchor=&quot;middle&quot;>and</text><text x=&quot;200&quot; y=&quot;160&quot; font-family=&quot;Georgia, serif&quot; font-size=&quot;52&quot; font-weight=&quot;bold&quot; fill=&quot;%23fff&quot; text-anchor=&quot;middle&quot;>FREEDOM</text><text x=&quot;200&quot; y=&quot;230&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23556b2f&quot; text-anchor=&quot;middle&quot;>A Simple Guide for Relaxation</text><text x=&quot;200&quot; y=&quot;255&quot; font-family=&quot;Arial&quot; font-size=&quot;16&quot; fill=&quot;%23556b2f&quot; text-anchor=&quot;middle&quot;>and Inner Peace</text><circle cx=&quot;200&quot; cy=&quot;380&quot; r=&quot;25&quot; fill=&quot;%23333&quot;/><path d=&quot;M 200 360 L 200 450 M 180 400 L 200 420 L 220 400&quot; stroke=&quot;%23333&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot;/></svg>'); background-size: cover; height: 300px;">
+        <div class="related-products">
+            <div class="section">
+                <h2>You may also like</h2>
+                <div class="products-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+                    <div class="product-card" onclick="showProduct(2)">
+                        <div class="product-image" style="background-image: url('peace-freedom.jpg'); height: 320px;"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">Peace and freedom</h3>
+                            <div class="product-price">$10</div>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Peace and freedom</h3>
+                    <div class="product-card" onclick="showProduct(1)">
+                        <div class="product-image" style="background-image: url('entrepreneurship.jpg'); height: 320px;">
+                            <span class="sale-badge">Sale</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Entrepreneurship skills for youths</h3>
+                            <div class="product-price">$5 <span class="original-price">$7</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Contact and Newsletter -->
         <section class="contact-section">
             <h2>Contact info:</h2>
             <div class="contact-info">
                 <p class="contact-item"><strong>Email:</strong> <a href="mailto:edrinejohns05@gmail.com">edrinejohns05@gmail.com</a></p>
-                <p class="contact-item"><strong>Phone / WhatsApp:</strong> +256 701079804</p>
-                <p class="contact-note">Get exclusive deals and early access to new products.</p>
+                <p class="contact-item"><strong>Phone / WhatsApp:</strong> <a href="tel:+256701079804">+256 701079804</a></p>
             </div>
-        </section>
-
-        <section class="newsletter">
-            <h2>Join Our Reading Community</h2>
-            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
-                <input type="email" class="newsletter-input" placeholder="Email address" required>
-                <button type="submit" class="newsletter-btn">→</button>
-            </form>
         </section>
     </div>
 
@@ -1088,57 +1475,76 @@
     <div id="checkout" class="page">
         <div class="checkout-page">
             <div class="checkout-header">
-                <h1>Eddiebookverse. Ug</h1>
+                <h1>Eddiebookverse.Ug</h1>
+                <div class="secure-badge">
+                    <span>🔒</span>
+                    <span>Secure Checkout</span>
+                </div>
             </div>
 
             <div class="order-summary">
-                <h3>Order summary <span style="float: right;">$15.34</span></h3>
-            </div>
-
-            <div class="checkout-section">
-                <h3>Contact</h3>
-                <div class="form-group">
-                    <input type="email" class="form-input" placeholder="Email or mobile phone number" required>
+                <h3>Order Summary</h3>
+                <div class="order-item">
+                    <span>African Beauty eBook</span>
+                    <span>$13.00</span>
+                </div>
+                <div class="order-item">
+                    <span>Subtotal</span>
+                    <span>$13.00</span>
+                </div>
+                <div class="order-item">
+                    <strong>Total</strong>
+                    <strong>$13.00</strong>
                 </div>
             </div>
 
             <div class="checkout-section">
-                <h3>Payment</h3>
-                <p style="color: #666; font-size: 14px; margin-bottom: 15px;">All transactions are secure and encrypted.</p>
+                <h3>Contact Information</h3>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" class="form-input" placeholder="you@example.com" required>
+                    <small style="color: #666; font-size: 13px;">Download link will be sent to this email</small>
+                </div>
+            </div>
+
+            <div class="checkout-section">
+                <h3>Payment Method</h3>
+                <p style="color: #666; font-size: 14px; margin-bottom: 20px;">All transactions are secure and encrypted.</p>
                 
                 <div class="payment-option selected">
-                    <strong>Mobile money</strong>
-                    <p style="font-size: 14px; color: #666; margin-top: 5px;">Transfers can also be made to mobile money</p>
+                    <strong>📱 Mobile Money</strong>
+                    <p style="font-size: 14px; color: #666; margin-top: 8px;">Transfers can also be made to mobile money</p>
                 </div>
             </div>
 
             <div class="checkout-section">
-                <h3>Billing address</h3>
+                <h3>Billing Address</h3>
                 
                 <div class="form-group">
-                    <label>Country/Region</label>
-                    <select class="form-input">
+                    <label>Country/Region *</label>
+                    <select class="form-input" required>
                         <option>Uganda</option>
                         <option>Kenya</option>
                         <option>Tanzania</option>
                         <option>Rwanda</option>
+                        <option>Other</option>
                     </select>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>First name (optional)</label>
+                        <label>First Name</label>
                         <input type="text" class="form-input">
                     </div>
                     <div class="form-group">
-                        <label>Last name</label>
+                        <label>Last Name *</label>
                         <input type="text" class="form-input" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" class="form-input" required>
+                    <label>Address *</label>
+                    <input type="text" class="form-input" placeholder="Street address" required>
                 </div>
 
                 <div class="form-group">
@@ -1147,34 +1553,20 @@
                 </div>
 
                 <div class="form-group">
-                    <label>City</label>
+                    <label>City *</label>
                     <input type="text" class="form-input" required>
                 </div>
             </div>
 
-            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e0e0e0;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 50px; height: 70px; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 600&quot;><defs><linearGradient id=&quot;g1&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;0&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; style=&quot;stop-color:%23d4773a&quot;/><stop offset=&quot;100%&quot; style=&quot;stop-color:%23704214&quot;/></linearGradient></defs><rect fill=&quot;url(%23g1)&quot; width=&quot;400&quot; height=&quot;600&quot;/></svg>'); background-size: cover; border-radius: 4px;"></div>
-                        <div>
-                            <div><strong>Total</strong></div>
-                            <div style="font-size: 14px; color: #666;">1 item</div>
-                        </div>
-                    </div>
-                    <div style="font-size: 18px; font-weight: 700;">USD $15.34</div>
-                </div>
-            </div>
-
-            <button class="complete-order-btn" onclick="alert('Order placed successfully! Check your email for download instructions.')">
-                Complete order
+            <button class="complete-order-btn" onclick="completeOrder()">
+                Complete Order
             </button>
 
-            <div class="footer-links" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
-                <a href="#">Refund policy</a>
-                <a href="#">Shipping</a>
-                <a href="#">Privacy policy</a>
-                <a href="#">Terms of service</a>
-                <a href="#" onclick="showPage('contact')">Contact</a>
+            <div class="footer-links" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #e0e0e0;">
+                <a href="#" onclick="showPage('home'); return false;">Refund policy</a>
+                <a href="#" onclick="showPage('home'); return false;">Shipping</a>
+                <a href="#" onclick="showPage('home'); return false;">Privacy policy</a>
+                <a href="#" onclick="showPage('contact'); return false;">Contact</a>
             </div>
         </div>
     </div>
@@ -1184,33 +1576,41 @@
         <section class="section">
             <h2 class="section-title">Contact Us</h2>
             
-            <div style="max-width: 600px; margin: 0 auto;">
+            <div style="max-width: 800px; margin: 0 auto;">
                 <div class="contact-section">
                     <h2>Get in Touch</h2>
                     <div class="contact-info">
-                        <p class="contact-item"><strong>Email:</strong> <a href="mailto:edrinejohns05@gmail.com">edrinejohns05@gmail.com</a></p>
-                        <p class="contact-item"><strong>Phone / WhatsApp:</strong> +256 701079804</p>
-                        <p class="contact-note">Get exclusive deals and early access to new products.</p>
+                        <p class="contact-item">
+                            <strong>Email:</strong> 
+                            <a href="mailto:edrinejohns05@gmail.com">edrinejohns05@gmail.com</a>
+                        </p>
+                        <p class="contact-item">
+                            <strong>Phone / WhatsApp:</strong> 
+                            <a href="tel:+256701079804">+256 701079804</a>
+                        </p>
+                        <p class="contact-note">
+                            We typically respond within 24 hours. Get exclusive deals and early access to new products.
+                        </p>
                     </div>
                 </div>
 
                 <div class="checkout-section">
                     <h3>Send us a message</h3>
-                    <form onsubmit="event.preventDefault(); alert('Thank you! We will get back to you soon.');">
+                    <form onsubmit="handleContactSubmit(event)">
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Name *</label>
                             <input type="text" class="form-input" required>
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
+                            <label>Email *</label>
                             <input type="email" class="form-input" required>
                         </div>
                         <div class="form-group">
-                            <label>Subject</label>
+                            <label>Subject *</label>
                             <input type="text" class="form-input" required>
                         </div>
                         <div class="form-group">
-                            <label>Message</label>
+                            <label>Message *</label>
                             <textarea class="form-input" style="min-height: 150px; resize: vertical;" required></textarea>
                         </div>
                         <button type="submit" class="add-to-cart-btn">Send Message</button>
@@ -1221,48 +1621,189 @@
 
         <section class="newsletter">
             <h2>Join Our Reading Community</h2>
-            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
-                <input type="email" class="newsletter-input" placeholder="Email address" required>
-                <button type="submit" class="newsletter-btn">→</button>
+            <p>Subscribe for new releases and exclusive offers.</p>
+            <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
             </form>
         </section>
     </div>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-links">
-            <a href="#">Refund policy</a>
-            <a href="#">Shipping</a>
-            <a href="#">Privacy policy</a>
-            <a href="#">Terms of service</a>
-            <a href="#" onclick="showPage('contact')">Contact</a>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Eddiebookverse.Ug</h3>
+                <p>Your universe of digital knowledge. Empowering readers worldwide with quality eBooks.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a onclick="showPage('home')">Home</a></li>
+                    <li><a onclick="showPage('catalog')">Shop</a></li>
+                    <li><a onclick="showPage('about')">About Us</a></li>
+                    <li><a onclick="showPage('contact')">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a onclick="showPage('home')">FAQ</a></li>
+                    <li><a onclick="showPage('home')">Refund Policy</a></li>
+                    <li><a onclick="showPage('home')">Privacy Policy</a></li>
+                    <li><a onclick="showPage('home')">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Eddiebookverse. Ug. All rights reserved.</p>
+            <p>&copy; 2024 Eddiebookverse.Ug. All rights reserved. Built with ❤️ for readers worldwide.</p>
         </div>
     </footer>
 
     <script>
-        // Page navigation
+        // Product Data
+        const products = [
+            {
+                id: 0,
+                title: 'African beauty a global educational exploration',
+                price: 13,
+                originalPrice: 23,
+                image: 'african-beauty.jpg',
+                description: 'African beauty a global education exploration is a book written specifically to advocate for the beauty of Africa and expose the world to the African Global influence in this today modern world and also expose the world to the cultural norms and specific diversity in Africa.'
+            },
+            {
+                id: 1,
+                title: 'Entrepreneurship skills for youths',
+                price: 5,
+                originalPrice: 7,
+                image: 'entrepreneurship.jpg',
+                description: 'Learn essential entrepreneurship skills designed specifically for young people. Build your business mindset and practical skills.'
+            },
+            {
+                id: 2,
+                title: 'Peace and freedom',
+                price: 10,
+                originalPrice: null,
+                image: 'peace-freedom.jpg',
+                description: 'A simple guide for relaxation and inner peace. Discover techniques for mindfulness and mental well-being.'
+            },
+            {
+                id: 3,
+                title: 'The 21-Day life reset',
+                price: 12,
+                originalPrice: null,
+                image: '21-day-reset.jpg',
+                description: 'A practical step-by-step program to stop feeling lost, build discipline, and take back control of your life.'
+            }
+        ];
+
+        // Page Navigation
         function showPage(pageName) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-            
-            // Show selected page
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
             document.getElementById(pageName).classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Quantity controls
+        // Show Product Details
+        function showProduct(productId) {
+            const product = products[productId];
+            document.getElementById('productMainImage').style.backgroundImage = `url('${product.image}')`;
+            document.getElementById('productTitle').textContent = product.title;
+            document.getElementById('productPrice').textContent = `$${product.price}.00`;
+            
+            if (product.originalPrice) {
+                document.getElementById('productOriginalPrice').textContent = `$${product.originalPrice}.00`;
+                document.getElementById('productOriginalPrice').style.display = 'inline';
+            } else {
+                document.getElementById('productOriginalPrice').style.display = 'none';
+            }
+            
+            showPage('product');
+        }
+
+        // Change Product Image
+        function changeProductImage(imageSrc, element) {
+            document.getElementById('productMainImage').style.backgroundImage = `url('${imageSrc}')`;
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // Quantity Controls
         function changeQuantity(change) {
             const input = document.getElementById('quantity');
             let value = parseInt(input.value) + change;
             if (value < 1) value = 1;
+            if (value > 99) value = 99;
             input.value = value;
         }
+
+        // Add to Cart
+        function addToCart(productName, price) {
+            showToast(`✓ ${productName} added to cart ($${price})`);
+        }
+
+        // Complete Order
+        function completeOrder() {
+            showToast('✓ Order placed successfully! Check your email for download instructions.');
+            setTimeout(() => {
+                showPage('home');
+            }, 2000);
+        }
+
+        // Newsletter Submit
+        function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            showToast('✓ Thank you for subscribing!');
+            event.target.reset();
+        }
+
+        // Contact Form Submit
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            showToast('✓ Message sent! We\'ll get back to you within 24 hours.');
+            event.target.reset();
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('mobile-active');
+        }
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
