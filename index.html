@@ -3,103 +3,181 @@
 <head>
 <title>EddieBookVerse Store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body{
-font-family: Arial;
-margin:0;
-background:#f4f6f8;
-text-align:center;
-}
-header{
-background:#0b3d91;
-color:white;
-padding:20px;
-}
-.container{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-}
-.book{
-background:white;
-margin:20px;
-padding:20px;
-border-radius:12px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-width:300px;
-}
-.book img{
-width:100%;
-border-radius:8px;
-}
-button{
-background:#28a745;
-color:white;
-padding:12px 20px;
-border:none;
-border-radius:8px;
-font-size:16px;
-cursor:pointer;
-}
-button:hover{
-background:#218838;
-}
-footer{
-background:#222;
-color:white;
-padding:15px;
-margin-top:40px;
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f9;}
+header{background:#0b3d91;color:white;padding:25px;text-align:center;}
+header h1{margin:0;}
+.products{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;padding:30px;}
+.card{background:white;width:280px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.1);padding:20px;text-align:center;transition:0.3s;}
+.card:hover{transform:translateY(-5px);}
+.card img{width:140px;margin-bottom:15px;}
+.price{font-weight:bold;color:#0b3d91;margin:10px 0;}
+button{padding:10px 15px;border:none;border-radius:8px;margin:5px 5px 10px 5px;cursor:pointer;font-size:14px;}
+.cart-btn{background:#28a745;color:white;}
+.paypal{background:#003087;color:white;}
+.mobilemoney{background:#FF9900;color:white;}
+.whatsapp{background:#25D366;color:white;}
+.pdf-btn{background:#0b3d91;color:white;padding:8px 12px;border:none;border-radius:8px;margin:5px;cursor:pointer;transition:all 0.3s ease;}
+.pdf-btn:hover{transform:translateY(-3px) scale(1.05);background:#0f52ba;}
+.pdf-card{background:#e8eaf6;padding:10px;border-radius:10px;text-align:center;opacity:0;transform:scale(0.8);transition:all 0.4s ease;}
+.pdf-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:10px;}
+.confirm-btn{background:#ff9900;color:white;padding:10px 15px;border:none;border-radius:8px;margin-top:10px;cursor:pointer;}
+footer{background:#111;color:white;text-align:center;padding:15px;margin-top:30px;}
+.cart{position:fixed;bottom:20px;right:20px;background:#0b3d91;color:white;padding:12px 18px;border-radius:50px;cursor:pointer;}
+.floating-whatsapp{position:fixed;bottom:90px;right:20px;background:#25D366;color:white;padding:15px 18px;border-radius:50px;font-weight:bold;font-size:14px;text-decoration:none;box-shadow:0 4px 10px rgba(0,0,0,0.2);z-index:1000;}
+.modal-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000;}
+.modal{background:white;padding:20px;border-radius:15px;width:90%;max-width:500px;text-align:center;}
+.modal h3{margin-top:0;}
+.modal button{margin-top:15px;}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>EddieBookVerse</h1>
-<p>Learn Skills. Build Wealth. Change Your Life.</p>
+  <h1>EddieBookVerse</h1>
+  <p>Learn Skills. Build Wealth. Change Your Life.</p>
 </header>
 
-<div class="container">
+<section class="products">
 
-<div class="book">
-<img src="youth.jpg" alt="Entrepreneurship Book">
-<h2>Entrepreneurship Skills for Youths</h2>
-<p>Author: EddieMafie</p>
-<p>Instant Download PDF eBook</p>
-<p><b>Price: $5</b></p>
-<a href="https://wa.me/256749658181">
-<button>Send Payment Proof</button>
-</a>
+  <div class="card">
+    <img src="images/entrepreneurship.jpg">
+    <h3>Entrepreneurship Skills for Youths</h3>
+    <p>Instant PDF Download</p>
+    <div class="price">$5</div>
+    <button class="cart-btn" onclick="addToCart('Entrepreneurship Skills for Youths',5,'ebooks/entrepreneurship.pdf')">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="images/stock.jpg">
+    <h3>Stock Market Basics</h3>
+    <p>Learn investing step-by-step</p>
+    <div class="price">$7</div>
+    <button class="cart-btn" onclick="addToCart('Stock Market Basics',7,'ebooks/stockmarket.pdf')">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="images/online.jpg">
+    <h3>Online Business Blueprint</h3>
+    <p>Build income online</p>
+    <div class="price">$6</div>
+    <button class="cart-btn" onclick="addToCart('Online Business Blueprint',6,'ebooks/onlinebusiness.pdf')">Add to Cart</button>
+  </div>
+
+</section>
+
+<div class="cart" onclick="openCartModal()">
+🛒 Cart (<span id="cartCount">0</span>)
 </div>
 
-<div class="book">
-<img src="stocks.jpg" alt="Stock Market Book">
-<h2>Stock Market Basics</h2>
-<p>Author: EddieMafie</p>
-<p>Learn how to invest wisely</p>
-<p><b>Price: $7</b></p>
-<a href="https://wa.me/256749658181">
-<button>Send Payment Proof</button>
-</a>
-</div>
-
-<div class="book">
-<img src="online.jpg" alt="Online Business Book">
-<h2>Online Business Blueprint</h2>
-<p>Author: EddieMafie</p>
-<p>Build income online step-by-step</p>
-<p><b>Price: $6</b></p>
-<a href="https://wa.me/256749658181">
-<button>Send Payment Proof</button>
-</a>
-</div>
-
+<div class="modal-bg" id="cartModal">
+  <div class="modal">
+    <h3>Your Cart</h3>
+    <div id="cartItems"></div>
+    <p>Total: $<span id="cartTotal">0</span></p>
+    <div id="pdfSection"></div>
+    <button onclick="checkout()">Checkout</button>
+    <button onclick="closeCartModal()">Close</button>
+  </div>
 </div>
 
 <footer>
-<p>© 2026 EddieBookVerse. All Rights Reserved.</p>
+© 2026 EddieBookVerse. All Rights Reserved.
 </footer>
+
+<a href="https://wa.me/256749658181" class="floating-whatsapp" target="_blank">
+💬 WhatsApp Business
+</a>
+
+<script>
+let cart = [];
+let cartTotal = 0;
+
+function addToCart(name, price, pdf){
+  cart.push({name,price,pdf});
+  cartTotal += price;
+  document.getElementById("cartCount").innerText = cart.length;
+  alert(name + " added to cart!");
+}
+
+function openCartModal(){
+  let itemsDiv = document.getElementById("cartItems");
+  let pdfDiv = document.getElementById("pdfSection");
+  pdfDiv.innerHTML = "";
+  if(cart.length===0){
+    itemsDiv.innerHTML="<p>Your cart is empty.</p>";
+  } else {
+    itemsDiv.innerHTML = "<ul>" + cart.map(p=>"<li>"+p.name+" - $"+p.price+"</li>").join("") + "</ul>";
+  }
+  document.getElementById("cartTotal").innerText = cartTotal;
+  document.getElementById("cartModal").style.display="flex";
+}
+
+function closeCartModal(){ 
+  document.getElementById("cartModal").style.display="none"; 
+}
+
+function checkout(){
+  if(cart.length===0){ alert("Your cart is empty."); return; }
+  let total = cartTotal;
+  let payment = prompt("Choose payment method:\n1 = PayPal\n2 = Mobile Money\n3 = WhatsApp Messenger");
+  switch(payment){
+    case "1": paypalCheckout(total); break;
+    case "2": mobileMoneyCheckout(total); break;
+    case "3": whatsappCheckout(total); break;
+    default: alert("Invalid choice"); break;
+  }
+}
+
+/* Pop-in PDF cards with hover animation */
+function showPDFs(){
+  let pdfDiv = document.getElementById("pdfSection");
+  pdfDiv.innerHTML = '<div class="pdf-grid"></div>';
+  let grid = pdfDiv.querySelector('.pdf-grid');
+  cart.forEach((p,index)=>{
+    let div = document.createElement('div');
+    div.className = 'pdf-card';
+    div.innerHTML = `<p>${p.name}</p><a href="${p.pdf}" download class="pdf-btn">📥 Download</a>`;
+    grid.appendChild(div);
+    setTimeout(()=>{
+      div.style.opacity='1';
+      div.style.transform='scale(1)';
+    }, index*200); // stagger pop-in
+  });
+}
+
+function paypalCheckout(total){
+  let items=cart.map(p=>p.name).join(", ");
+  let url="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=eddiebookverse@gmail.com&item_name="+encodeURIComponent(items)+"&amount="+total+"&currency_code=USD";
+  window.open(url,"_blank");
+  addConfirmButton();
+}
+
+function mobileMoneyCheckout(total){
+  let items=cart.map(p=>p.name).join(", ");
+  alert("Mobile Money Payment Instructions:\n\n" +
+        "Pay using Airtel or MTN Uganda Mobile Money to one of the numbers:\n" +
+        "• 256740026620\n" +
+        "• 256749658181\n" +
+        "• 256779315402\n\n" +
+        "Total Amount: $"+total+"\n\n" +
+        "After payment, click 'Confirm Payment' in the cart to get your PDFs.");
+  addConfirmButton();
+}
+
+function whatsappCheckout(total){
+  let items=cart.map(p=>p.name).join(", ");
+  let message="Hello, I want to order: "+items+" | Total: $"+total;
+  window.open("https://wa.me/256740026620?text="+encodeURIComponent(message));
+}
+
+function addConfirmButton(){
+  let pdfDiv = document.getElementById("pdfSection");
+  pdfDiv.innerHTML = `<button class="confirm-btn" onclick="showPDFs()">✅ Confirm Payment & Show PDFs</button>`;
+}
+</script>
 
 </body>
 </html>
